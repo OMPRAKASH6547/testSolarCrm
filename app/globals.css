@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0f172a;
+  --surface: #1e293b;
+  --border: #334155;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --accent: #22c55e;
+}
+
+body {
+  @apply bg-slate-950 text-slate-100 antialiased;
+}
+
+input,
+select,
+textarea {
+  @apply rounded-lg border border-slate-600 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none focus:border-solar-500;
+}
+
+button {
+  @apply rounded-lg px-4 py-2 text-sm font-medium transition;
+}
+
+.btn-primary {
+  @apply bg-solar-600 text-white hover:bg-solar-500;
+}
+
+.btn-secondary {
+  @apply border border-slate-600 bg-slate-800 text-slate-100 hover:bg-slate-700;
+}
+
+.card {
+  @apply rounded-xl border border-slate-700/80 bg-slate-900/80 p-4 shadow-lg backdrop-blur;
+}
