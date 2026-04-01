@@ -43,50 +43,48 @@ function LoginInner() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 p-4">
-      <div className="card w-full max-w-md border-slate-700">
-        <h1 className="mb-1 text-2xl font-bold text-solar-400">SolarPro CRM</h1>
-        <p className="mb-6 text-sm text-slate-400">Sign in to your account</p>
-        {error && <p className="mb-3 text-sm text-red-400">{error}</p>}
-        <form onSubmit={onSubmit} className="flex flex-col gap-4">
+    <div className="card w-full max-w-md border-slate-700 p-6 sm:max-w-lg sm:p-8">
+      <h1 className="mb-1 text-2xl font-bold text-solar-400 sm:text-3xl">SolarPro CRM</h1>
+      <p className="mb-6 text-sm text-slate-400 sm:text-base">Sign in to your account</p>
+      {error && <p className="mb-3 text-sm text-red-400">{error}</p>}
+      <form onSubmit={onSubmit} className="flex flex-col gap-4">
+        <label className="flex flex-col gap-1 text-sm">
+          Email
+          <input
+            type="email"
+            autoComplete="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </label>
+        <label className="flex flex-col gap-1 text-sm">
+          Password
+          <input
+            type="password"
+            autoComplete="current-password"
+            required={!needsOtp}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </label>
+        {needsOtp && (
           <label className="flex flex-col gap-1 text-sm">
-            Email
-            <input
-              type="email"
-              autoComplete="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+            Email OTP
+            <input value={otp} onChange={(e) => setOtp(e.target.value)} placeholder="6-digit code" />
           </label>
-          <label className="flex flex-col gap-1 text-sm">
-            Password
-            <input
-              type="password"
-              autoComplete="current-password"
-              required={!needsOtp}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </label>
-          {needsOtp && (
-            <label className="flex flex-col gap-1 text-sm">
-              Email OTP
-              <input value={otp} onChange={(e) => setOtp(e.target.value)} placeholder="6-digit code" />
-            </label>
-          )}
-          <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? "Signing in…" : "Sign in"}
-          </button>
-        </form>
-        <div className="mt-4 flex justify-between text-xs text-slate-500">
-          <Link href="/forgot-password" className="hover:text-solar-400">
-            Forgot password?
-          </Link>
-          <Link href="/register" className="hover:text-solar-400">
-            First-time setup
-          </Link>
-        </div>
+        )}
+        <button type="submit" className="btn-primary" disabled={loading}>
+          {loading ? "Signing in…" : "Sign in"}
+        </button>
+      </form>
+      <div className="mt-4 flex justify-between text-xs text-slate-500">
+        <Link href="/forgot-password" className="hover:text-solar-400">
+          Forgot password?
+        </Link>
+        <Link href="/register" className="hover:text-solar-400">
+          First-time setup
+        </Link>
       </div>
     </div>
   );
@@ -95,7 +93,7 @@ function LoginInner() {
 export default function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-emerald-950 p-4">
-      <Suspense fallback={<div className="text-slate-400">Loading…</div>}>
+      <Suspense fallback={<div className="card w-full max-w-md text-center text-slate-400">Loading…</div>}>
         <LoginInner />
       </Suspense>
     </div>
